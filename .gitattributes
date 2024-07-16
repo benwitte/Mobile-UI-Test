@@ -1,0 +1,22 @@
+# Normalize EOL for all files that Git considers text files.
+* text=auto eol=lf
+
+# Blender-specific ignores
+*.blend1
+*.blend2
+*.blend@
+*.blend
+
+# Exported assets (if they can be regenerated)
+*.obj
+*.fbx
+*.gltf
+*.glb
+
+# Git LFS for large assets
+*.png
+*.jpg
+*.jpeg
+*.wav
+*.mp4
+*.ogg
