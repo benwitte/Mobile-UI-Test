@@ -26,23 +26,3 @@ Thumbs.db
 *.tmp
 *.bak
 *.swp
-
-# Blender-specific ignores
-*.blend1
-*.blend2
-*.blend@
-*.blend
-
-# Exported assets (if they can be regenerated)
-*.obj
-*.fbx
-*.gltf
-*.glb
-
-# Git LFS for large assets
-*.png
-*.jpg
-*.jpeg
-*.wav
-*.mp4
-*.ogg
