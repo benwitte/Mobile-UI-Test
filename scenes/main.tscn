@@ -1,0 +1,101 @@
+[gd_scene load_steps=11 format=3 uid="uid://b4suuq4dijl1u"]
+
+[ext_resource type="Script" path="res://scenes/main.gd" id="1_io5gf"]
+[ext_resource type="Texture2D" uid="uid://c8eycdj1dghi2" path="res://assets/kenney_ui-pack/PNG/green_button04.png" id="1_sk8cg"]
+[ext_resource type="FontFile" uid="uid://ybq3qv0xtfu8" path="res://assets/kenney_ui-pack/Font/kenvector_future_thin.ttf" id="1_v2ah1"]
+[ext_resource type="Texture2D" uid="uid://briw0ronlivvu" path="res://assets/kenney_ui-pack/PNG/green_button05.png" id="2_pr032"]
+
+[sub_resource type="FontVariation" id="FontVariation_6kcst"]
+base_font = ExtResource("1_v2ah1")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1apov"]
+texture = ExtResource("1_sk8cg")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_o0cjh"]
+texture = ExtResource("1_sk8cg")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ajcso"]
+texture = ExtResource("2_pr032")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_o5rau"]
+
+[sub_resource type="FontVariation" id="FontVariation_wika8"]
+base_font = ExtResource("1_v2ah1")
+
+[node name="Main" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_io5gf")
+
+[node name="IncreaseScoreButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -218.5
+offset_top = -55.5
+offset_right = 218.5
+offset_bottom = 55.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = SubResource("FontVariation_6kcst")
+theme_override_font_sizes/font_size = 75
+theme_override_styles/normal = SubResource("StyleBoxTexture_1apov")
+theme_override_styles/hover = SubResource("StyleBoxTexture_o0cjh")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_ajcso")
+theme_override_styles/focus = SubResource("StyleBoxTexture_o5rau")
+text = "Increase"
+
+[node name="ScoreLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -181.0
+offset_top = 46.0
+offset_right = 181.0
+offset_bottom = 131.0
+grow_horizontal = 2
+theme_override_fonts/font = SubResource("FontVariation_wika8")
+theme_override_font_sizes/font_size = 75
+text = "Score: 0"
+
+[node name="AimScoreLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -260.5
+offset_top = 121.0
+offset_right = 260.5
+offset_bottom = 206.0
+grow_horizontal = 2
+theme_override_fonts/font = SubResource("FontVariation_wika8")
+theme_override_font_sizes/font_size = 45
+text = "Aim Score: 0"
+horizontal_alignment = 1
+
+[node name="TimeLeftLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -278.0
+offset_top = -166.0
+offset_right = 278.0
+offset_bottom = -81.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = SubResource("FontVariation_wika8")
+theme_override_font_sizes/font_size = 75
+text = "Time Left: 0s"
+
+[connection signal="pressed" from="IncreaseScoreButton" to="." method="_on_increase_score_button_pressed"]

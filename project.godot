@@ -17,3 +17,4 @@ config/icon="res://icon.svg"
 [rendering]
 
 renderer/rendering_method="mobile"
+environment/defaults/default_clear_color=Color(0.37377, 0.45725, 0.801773, 1)
