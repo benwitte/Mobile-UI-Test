@@ -1,9 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://dymjok0v7vruo"]
+[gd_scene load_steps=12 format=3 uid="uid://dymjok0v7vruo"]
 
 [ext_resource type="Script" path="res://scenes/home_screen.gd" id="1_4gna4"]
 [ext_resource type="FontFile" uid="uid://ybq3qv0xtfu8" path="res://assets/kenney_ui-pack/Font/kenvector_future_thin.ttf" id="1_japkh"]
+[ext_resource type="FontFile" uid="uid://bm3ckeb4yrxi2" path="res://assets/kenney_ui-pack/Font/kenvector_future.ttf" id="2_1s84e"]
 [ext_resource type="Texture2D" uid="uid://eqye8jr7uvkw" path="res://assets/kenney_ui-pack/PNG/red_button08.png" id="2_5wd86"]
 [ext_resource type="Texture2D" uid="uid://cysokptfgfn28" path="res://assets/kenney_ui-pack/PNG/red_button09.png" id="3_km3fw"]
+[ext_resource type="AudioStream" uid="uid://lhhcppsflqhk" path="res://assets/kenney_ui-pack/Bonus/click1.ogg" id="6_askyp"]
 
 [sub_resource type="FontVariation" id="FontVariation_gbhl4"]
 base_font = ExtResource("1_japkh")
@@ -16,6 +18,7 @@ texture = ExtResource("2_5wd86")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qgaqh"]
 texture = ExtResource("3_km3fw")
+modulate_color = Color(0.784314, 0.784314, 0.784314, 1)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ujcqh"]
 
@@ -28,6 +31,21 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_4gna4")
 
+[node name="Title" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -511.5
+offset_top = 63.0
+offset_right = 511.5
+offset_bottom = 215.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("2_1s84e")
+theme_override_font_sizes/font_size = 112
+text = "Clicker Game"
+horizontal_alignment = 1
+
 [node name="PlayButton" type="Button" parent="."]
 layout_mode = 1
 anchors_preset = 8
@@ -36,9 +54,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -163.0
-offset_top = -62.0
+offset_top = -92.0
 offset_right = 163.0
-offset_bottom = 62.0
+offset_bottom = 32.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = SubResource("FontVariation_gbhl4")
@@ -66,6 +84,50 @@ theme_override_font_sizes/font_size = 85
 text = "Play"
 horizontal_alignment = 1
 
+[node name="ExitButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -163.0
+offset_top = 52.0
+offset_right = 163.0
+offset_bottom = 176.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = SubResource("FontVariation_gbhl4")
+theme_override_font_sizes/font_size = 85
+theme_override_styles/normal = SubResource("StyleBoxTexture_5dyca")
+theme_override_styles/hover = SubResource("StyleBoxTexture_2qkd6")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_qgaqh")
+theme_override_styles/focus = SubResource("StyleBoxTexture_ujcqh")
+
+[node name="ExitLabel" type="Label" parent="ExitButton"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -138.0
+offset_top = -48.5
+offset_right = 138.0
+offset_bottom = 48.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("1_japkh")
+theme_override_font_sizes/font_size = 85
+text = "Exit"
+horizontal_alignment = 1
+
+[node name="ClickSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_askyp")
+
 [connection signal="button_down" from="PlayButton" to="." method="_on_play_button_button_down"]
 [connection signal="button_up" from="PlayButton" to="." method="_on_play_button_button_up"]
 [connection signal="pressed" from="PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="button_down" from="ExitButton" to="." method="_on_exit_button_button_down"]
+[connection signal="button_up" from="ExitButton" to="." method="_on_exit_button_button_up"]
+[connection signal="pressed" from="ExitButton" to="." method="_on_exit_button_pressed"]

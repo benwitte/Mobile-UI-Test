@@ -1,9 +1,15 @@
-[gd_scene load_steps=11 format=3 uid="uid://b4suuq4dijl1u"]
+[gd_scene load_steps=22 format=3 uid="uid://b4suuq4dijl1u"]
 
 [ext_resource type="Script" path="res://scenes/main.gd" id="1_io5gf"]
 [ext_resource type="Texture2D" uid="uid://c8eycdj1dghi2" path="res://assets/kenney_ui-pack/PNG/green_button04.png" id="1_sk8cg"]
 [ext_resource type="FontFile" uid="uid://ybq3qv0xtfu8" path="res://assets/kenney_ui-pack/Font/kenvector_future_thin.ttf" id="1_v2ah1"]
 [ext_resource type="Texture2D" uid="uid://briw0ronlivvu" path="res://assets/kenney_ui-pack/PNG/green_button05.png" id="2_pr032"]
+[ext_resource type="Texture2D" uid="uid://todwewqxo0yh" path="res://assets/kenney_ui-pack/PNG/grey_button04.png" id="5_wm7r6"]
+[ext_resource type="Texture2D" uid="uid://eqye8jr7uvkw" path="res://assets/kenney_ui-pack/PNG/red_button08.png" id="6_sclll"]
+[ext_resource type="Texture2D" uid="uid://cysokptfgfn28" path="res://assets/kenney_ui-pack/PNG/red_button09.png" id="7_l3pvk"]
+[ext_resource type="Texture2D" uid="uid://bvu46w6n53yjn" path="res://assets/kenney_ui-pack/PNG/grey_panel.png" id="7_rqk7j"]
+[ext_resource type="FontFile" uid="uid://bm3ckeb4yrxi2" path="res://assets/kenney_ui-pack/Font/kenvector_future.ttf" id="8_pjw7f"]
+[ext_resource type="AudioStream" uid="uid://lhhcppsflqhk" path="res://assets/kenney_ui-pack/Bonus/click1.ogg" id="11_s0nbg"]
 
 [sub_resource type="FontVariation" id="FontVariation_6kcst"]
 base_font = ExtResource("1_v2ah1")
@@ -17,10 +23,27 @@ texture = ExtResource("1_sk8cg")
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ajcso"]
 texture = ExtResource("2_pr032")
 
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_i45de"]
+texture = ExtResource("5_wm7r6")
+
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_o5rau"]
 
 [sub_resource type="FontVariation" id="FontVariation_wika8"]
 base_font = ExtResource("1_v2ah1")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_82i4r"]
+texture = ExtResource("7_rqk7j")
+modulate_color = Color(0.776013, 0.260144, 0.790236, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7ttha"]
+texture = ExtResource("6_sclll")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3rj1f"]
+texture = ExtResource("6_sclll")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qb0sk"]
+texture = ExtResource("7_l3pvk")
+modulate_color = Color(0.784314, 0.784314, 0.784314, 1)
 
 [node name="Main" type="Control"]
 layout_mode = 3
@@ -49,6 +72,7 @@ theme_override_font_sizes/font_size = 75
 theme_override_styles/normal = SubResource("StyleBoxTexture_1apov")
 theme_override_styles/hover = SubResource("StyleBoxTexture_o0cjh")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_ajcso")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_i45de")
 theme_override_styles/focus = SubResource("StyleBoxTexture_o5rau")
 text = "Increase"
 
@@ -66,19 +90,19 @@ theme_override_fonts/font = SubResource("FontVariation_wika8")
 theme_override_font_sizes/font_size = 75
 text = "Score: 0"
 
-[node name="AimScoreLabel" type="Label" parent="."]
+[node name="HighScoreLabel" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -260.5
-offset_top = 121.0
+offset_top = 148.0
 offset_right = 260.5
-offset_bottom = 206.0
+offset_bottom = 233.0
 grow_horizontal = 2
 theme_override_fonts/font = SubResource("FontVariation_wika8")
 theme_override_font_sizes/font_size = 45
-text = "Aim Score: 0"
+text = "High Score: 0"
 horizontal_alignment = 1
 
 [node name="TimeLeftLabel" type="Label" parent="."]
@@ -96,6 +120,143 @@ grow_horizontal = 2
 grow_vertical = 0
 theme_override_fonts/font = SubResource("FontVariation_wika8")
 theme_override_font_sizes/font_size = 75
-text = "Time Left: 0s"
+text = "Time Left:"
 
+[node name="TimeLeftTimer" type="Timer" parent="."]
+autostart = true
+
+[node name="GameOverScreen" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="GameOverScreen"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -357.5
+offset_top = -205.5
+offset_right = 357.5
+offset_bottom = 205.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_82i4r")
+
+[node name="GameOverLabel" type="Label" parent="GameOverScreen/Panel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -288.0
+offset_top = 25.0
+offset_right = 288.0
+offset_bottom = 115.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("8_pjw7f")
+theme_override_font_sizes/font_size = 80
+text = "Game Over"
+
+[node name="PlayAgainButton" type="Button" parent="GameOverScreen/Panel"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 35.0
+offset_top = -147.5
+offset_right = 339.0
+offset_bottom = -36.5
+grow_vertical = 0
+theme_override_styles/normal = SubResource("StyleBoxTexture_7ttha")
+theme_override_styles/hover = SubResource("StyleBoxTexture_3rj1f")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_qb0sk")
+
+[node name="PlayAgainLabel" type="Label" parent="GameOverScreen/Panel/PlayAgainButton"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -128.0
+offset_top = -29.0
+offset_right = 128.0
+offset_bottom = 29.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("1_v2ah1")
+theme_override_font_sizes/font_size = 47
+text = "New Game"
+horizontal_alignment = 1
+
+[node name="ExitAppButton" type="Button" parent="GameOverScreen/Panel"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -340.0
+offset_top = -147.5
+offset_right = -36.0
+offset_bottom = -36.5
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_styles/normal = SubResource("StyleBoxTexture_7ttha")
+theme_override_styles/hover = SubResource("StyleBoxTexture_3rj1f")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_qb0sk")
+
+[node name="ExitAppLabel" type="Label" parent="GameOverScreen/Panel/ExitAppButton"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -128.0
+offset_top = -29.0
+offset_right = 128.0
+offset_bottom = 29.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("1_v2ah1")
+theme_override_font_sizes/font_size = 47
+text = "Home"
+horizontal_alignment = 1
+
+[node name="WinLossLabel" type="Label" parent="GameOverScreen/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -307.5
+offset_top = -76.5
+offset_right = 285.5
+offset_bottom = 19.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("1_v2ah1")
+theme_override_font_sizes/font_size = 60
+horizontal_alignment = 1
+
+[node name="ClickSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_s0nbg")
+
+[connection signal="button_down" from="IncreaseScoreButton" to="." method="_on_increase_score_button_button_down"]
+[connection signal="button_up" from="IncreaseScoreButton" to="." method="_on_increase_score_button_button_up"]
 [connection signal="pressed" from="IncreaseScoreButton" to="." method="_on_increase_score_button_pressed"]
+[connection signal="timeout" from="TimeLeftTimer" to="." method="_on_time_left_timer_timeout"]
+[connection signal="button_down" from="GameOverScreen/Panel/PlayAgainButton" to="." method="_on_play_again_button_button_down"]
+[connection signal="button_up" from="GameOverScreen/Panel/PlayAgainButton" to="." method="_on_play_again_button_button_up"]
+[connection signal="pressed" from="GameOverScreen/Panel/PlayAgainButton" to="." method="_on_play_again_button_pressed"]
+[connection signal="button_down" from="GameOverScreen/Panel/ExitAppButton" to="." method="_on_exit_app_button_button_down"]
+[connection signal="button_up" from="GameOverScreen/Panel/ExitAppButton" to="." method="_on_exit_app_button_button_up"]
+[connection signal="pressed" from="GameOverScreen/Panel/ExitAppButton" to="." method="_on_exit_app_button_pressed"]
