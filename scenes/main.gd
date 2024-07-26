@@ -2,17 +2,20 @@ extends Control
 
 var score := 0
 
-var highScore := 0
+var hiScore := Global.saveData.highScore
 
-var setTime := 2
+var setTime := 10
 
 var timeLeft := setTime
+
+
+
 
 
 func _ready():
 	$TimeLeftLabel.text = "Time Left:" + str(timeLeft)
 	$GameOverScreen.hide()
-	$HighScoreLabel.text = "High Score: " + str(highScore)
+	$HighScoreLabel.text = "High Score: " + str(hiScore)
 
 
 ## SCORE BUTTON CODE 
@@ -20,6 +23,7 @@ func _on_increase_score_button_pressed():
 	#if timeLeft > 0:
 		score += 1
 		$ScoreLabel.text = "Score: " + str(score)
+		$SmallClick.play()
 		# cause phone to vibrate for 125 ms on touching button
 		Input.vibrate_handheld(125) 
 
@@ -39,11 +43,13 @@ func _on_time_left_timer_timeout():
 		$TimeLeftLabel.text = "Time Left: " + str(timeLeft)
 	elif timeLeft < 0:
 		$TimeLeftLabel.text = "Time Left: 0"
-		if score > highScore:
-			highScore = score
-			$HighScoreLabel.text = "High Score: " + str(highScore)
-			$GameOverScreen/Panel/WinLossLabel.add_theme_font_size_override("font_size", 50)
+		if score > hiScore:
+			hiScore = score
+			$HighScoreLabel.text = "High Score: " + str(hiScore)
+			$GameOverScreen/Panel/WinLossLabel.add_theme_font_size_override("font_size", 45)
 			$GameOverScreen/Panel/WinLossLabel.text = "You set a new high score!"
+			Global.saveData.highScore = hiScore
+			Global.saveData.save()
 		else:
 			$GameOverScreen/Panel/WinLossLabel.text = "Nice Try!"
 		$TimeLeftTimer.stop()

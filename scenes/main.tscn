@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://b4suuq4dijl1u"]
+[gd_scene load_steps=23 format=3 uid="uid://b4suuq4dijl1u"]
 
 [ext_resource type="Script" path="res://scenes/main.gd" id="1_io5gf"]
 [ext_resource type="Texture2D" uid="uid://c8eycdj1dghi2" path="res://assets/kenney_ui-pack/PNG/green_button04.png" id="1_sk8cg"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://cysokptfgfn28" path="res://assets/kenney_ui-pack/PNG/red_button09.png" id="7_l3pvk"]
 [ext_resource type="Texture2D" uid="uid://bvu46w6n53yjn" path="res://assets/kenney_ui-pack/PNG/grey_panel.png" id="7_rqk7j"]
 [ext_resource type="FontFile" uid="uid://bm3ckeb4yrxi2" path="res://assets/kenney_ui-pack/Font/kenvector_future.ttf" id="8_pjw7f"]
+[ext_resource type="AudioStream" uid="uid://ncw0h4kve2cb" path="res://assets/confirmation_001.ogg" id="10_ifj4p"]
 [ext_resource type="AudioStream" uid="uid://lhhcppsflqhk" path="res://assets/kenney_ui-pack/Bonus/click1.ogg" id="11_s0nbg"]
 
 [sub_resource type="FontVariation" id="FontVariation_6kcst"]
@@ -247,8 +248,11 @@ theme_override_fonts/font = ExtResource("1_v2ah1")
 theme_override_font_sizes/font_size = 60
 horizontal_alignment = 1
 
-[node name="ClickSound" type="AudioStreamPlayer" parent="."]
+[node name="SmallClick" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("11_s0nbg")
+
+[node name="ClickSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_ifj4p")
 
 [connection signal="button_down" from="IncreaseScoreButton" to="." method="_on_increase_score_button_button_down"]
 [connection signal="button_up" from="IncreaseScoreButton" to="." method="_on_increase_score_button_button_up"]
